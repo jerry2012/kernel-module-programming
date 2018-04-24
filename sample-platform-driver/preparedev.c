@@ -27,17 +27,21 @@ static struct resource sample_resources[] = {
 
 	};
 
+static void sample_release(struct device *dev)
+{
+}
 
 static struct platform_device sample_device = {
         .name           = DRIVER_NAME,
         .id             = -1,
         .num_resources  = ARRAY_SIZE(sample_resources),
         .resource       = sample_resources,
+	.dev.release	= sample_release,
 };
 
 int ourinitmodule(void)
 {
-	printk(KERN_ALERT "\n Welcome to sample Platform driver(device).... \n");
+	printk(KERN_ALERT "\n Welcome to sample Platform(device).... \n");
 	platform_device_register(&sample_device);
 	return 0;
 }
@@ -45,7 +49,7 @@ int ourinitmodule(void)
 void ourcleanupmodule(void)
 {
 	platform_device_unregister(&sample_device);
-	printk(KERN_ALERT "\n Thanks....Exiting sample Platform(device) driver... \n");
+	printk(KERN_ALERT "\n Thanks....Exiting sample Platform(device)... \n");
 }
 
 module_init(ourinitmodule);

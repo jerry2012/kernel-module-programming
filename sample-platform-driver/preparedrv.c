@@ -12,7 +12,7 @@ static int sample_drv_probe(struct platform_device *pdev)
 
  	struct resource *res1, *res2;
 
-        res1 = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+        res1 = platform_get_resource(pdev, IORESOURCE_MEM, 0);
         if (unlikely(!res1)) {
                 pr_err(" Specified Resource Not Available... 1\n");
                 return -1;
